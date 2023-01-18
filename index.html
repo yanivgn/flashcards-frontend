@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body dir="rtl">
+
+    <h1>תרגלו את אוצר המילים של הקורס</h1>
+
+    <div id="setup">
+        <form>
+            שם משתמש: <input type="text" id="name">
+            שיעור:
+            <select id="level">
+                <option disabled selected>מספר שיעור</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <button>מתחילים!</button>
+        </form>
+
+    </div>
+
+    <div id="board">
+        <div class="question">
+            שאלה
+        </div>
+        <div class="answers">
+            <div class="answer">תשובה 1</div>
+            <div class="answer">תשובה 2</div>
+            <div class="answer">תשובה 3</div>
+            <div class="answer">תשובה 4</div>
+            <div class="answer">תשובה 5</div>
+        </div>
+        <div>
+            <button id="next">הבא</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

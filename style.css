@@ -1,0 +1,35 @@
+h1{
+    text-align: center;
+}
+
+#setup{
+    max-width:600px;
+    border:1px solid gray;
+    margin:40px auto;
+    padding:30px;
+}
+#board{
+    max-width:600px;
+    margin:40px auto;
+    border:1px solid gray;
+    padding:30px;
+    display: none;
+}
+
+.question{
+    margin:20px 0;
+    font-size:32px;
+}
+
+.answer{
+    font-size:26px;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid gray;
+    cursor: pointer;
+}
+
+.answer:hover{
+    background-color: rgb(193, 220, 236);
+
+}
