@@ -2,6 +2,7 @@ let username;
 let level;
 let data;
 let i = 0;
+let score;
 
 
 $("form").submit(function (e) {
@@ -20,23 +21,56 @@ $("form").submit(function (e) {
         async: false,
         url: url,
         success: function (result) {
-           data = result;
+            data = result;
         }
     });
     nextQuestion();
 });
 
-$("#next").click(nextQuestion);
+$("#next").click(function(){
+    if(true){
 
-function nextQuestion(){
-     $(".question").html(data[i]["arabic"]);
+    }else{
 
-     $(".answer").each(function(j, el){
-        if(j==0){
-            $(el).html(data[i]["hebrew"]);
-        }else{
-            $(el).html(data[i]["wrong answers"][j-1]);
-        }
-     });
-     i++;
+    }
+    nextQuestion();
+});
+
+function nextQuestion() {
+    $(".question").html(data[i]["arabic"]);
+
+    let answers = [];
+    answers.push(data[i]["hebrew"]);
+    data[i]["wrong answers"].forEach(el => {
+        answers.push(el);
+    });
+
+    answers = shuffle(answers);
+
+
+
+    $(".answer").each(function (j, el) {
+        $(el).html(answers[j]);
+    });
+
+    i++;
+}
+
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
 }

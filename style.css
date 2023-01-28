@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Abraham';
+    src: url('font/Abraham-Regular.ttf');
+}
+
+body{
+    font-family: 'Abraham';
+}
+
+
 h1{
     text-align: center;
 }
@@ -12,21 +22,23 @@ h1{
     max-width:600px;
     margin:40px auto;
     border:1px solid gray;
-    padding:30px;
+    padding:10px;
     display: none;
 }
 
 .question{
     margin:20px 0;
-    font-size:32px;
+    font-size:25px;
+    font-weight: bold;
 }
 
 .answer{
-    font-size:26px;
-    padding:10px;
-    margin:10px 0;
-    border:1px solid gray;
+    font-size:24px;
+    padding:8px;
+    margin:8px 0;
+    border:1px solid #007BFF;
     cursor: pointer;
+    background-color: #F0F8FF;
 }
 
 .answer:hover{
