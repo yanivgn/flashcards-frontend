@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 </head>
 
 <body dir="rtl">
@@ -28,7 +31,7 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
             </select>
-            <button>מתחילים!</button>
+            <button style="cursor:pointer;">מתחילים!</button>
         </form>
 
     </div>
@@ -38,17 +41,42 @@
             שאלה
         </div>
         <div class="answers">
-            <div class="answer">תשובה 1</div>
-            <div class="answer">תשובה 2</div>
-            <div class="answer">תשובה 3</div>
-            <div class="answer">תשובה 4</div>
-            <div class="answer">תשובה 5</div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
         </div>
         <div>
-            <button id="next">הבא</button>
+             <p>שאלה
+                <span>1</span>
+                מתוך 
+                <span>10</span>
+             </p>
+            <button id="check">בדיקה</button>
+            <button id="next">המשך</button>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="script.js"></script>
 </body>
 
