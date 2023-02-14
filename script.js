@@ -49,7 +49,9 @@ $("#check").click(function () {
     if (input == correctAnswer) {
         selected.find(".fa-circle-check").show();
         selected.css("background-color", "lightgreen");
-        updateAnswer(username, wordId, true)
+        if (username != "anonymous") {
+            updateAnswer(username, wordId, true);
+        }
     } else {
         score -= 10;
         selected.find(".fa-circle-xmark").show();
@@ -71,7 +73,7 @@ function nextQuestion() {
     $("#check").css("background-color", "lightblue");
     $("#check").css("cursor", "initial");
 
-    
+
     $(".question-text").html(data[i]["arabic"]);
     audio = new Audio((data[i]["audio"]));
     correctAnswer = data[i]["hebrew"];
@@ -131,6 +133,6 @@ $(".close").click(function () {
     location.reload();
 });
 
-$("#audio-icon").click(function(){
+$("#audio-icon").click(function () {
     audio.play();
 });
