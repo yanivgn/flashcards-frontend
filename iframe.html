@@ -6,13 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body *{
+            font-family: 'Arial';
+        }
+    </style>
 </head>
 
-<body>
+<body dir="rtl">
 
-    <iframe id="flashcards" src="index.html" width="100%" height="800px" frameBorder="0"
-        onload="this.contentWindow.postMessage({ username: 'yanivg' }, '*');"></iframe>
 
+
+    <form>
+        שם משתמש: <input type="text" id="name">
+        <button style="cursor:pointer;">שלח</button>
+    </form>
+
+
+    <iframe id="flashcards" src="https://madrasa-flashcards.onrender.com/" width="100%" height="800px" frameBorder="0"></iframe>
+    <script>
+
+        //In open edx
+
+        // $.ajax({
+        //     async: false,
+        //     url: 'https://courses.madrasafree.com/api/user/v1/me',
+        //     success: function (result) {
+        //         data = result;
+        //     }
+        // });
+
+        document.querySelector("form").addEventListener("submit",function (e) {
+            e.preventDefault();
+            let username =  document.querySelector("#name").value;
+            document.querySelector("#flashcards").contentWindow.postMessage({'username': username}, '*');
+
+        });
+
+
+
+
+
+    </script>
 </body>
 
 </html>

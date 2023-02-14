@@ -19,27 +19,27 @@ window.addEventListener("message", (e) => {
 
 $(".username").html(username);
 
-$("form").submit(function (e) {
-    e.preventDefault();
-    username = $("#name").val();
-    level = $("#level").val();
-    if (username == "" || level == null || level == "") {
-        alert("נא הזינו שם משתמש ומספר שיעור");
-        return false;
-    }
-    $("#setup").hide();
-    $("#board").show();
-    let url = `https://flashcards-5g44.onrender.com/username/${username}/level/${level}`;
+// $("form").submit(function (e) {
+//     e.preventDefault();
+//     username = $("#name").val();
+//     level = $("#level").val();
+//     if (username == "" || level == null || level == "") {
+//         alert("נא הזינו שם משתמש ומספר שיעור");
+//         return false;
+//     }
+//     $("#setup").hide();
+//     $("#board").show();
+//     let url = `https://flashcards-5g44.onrender.com/username/${username}/level/${level}`;
 
-    $.ajax({
-        async: false,
-        url: url,
-        success: function (result) {
-            data = result;
-        }
-    });
-    nextQuestion();
-});
+//     $.ajax({
+//         async: false,
+//         url: url,
+//         success: function (result) {
+//             data = result;
+//         }
+//     });
+//     nextQuestion();
+// });
 
 
 $(".lesson").click(function () {
