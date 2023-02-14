@@ -1,83 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body * {
-            font-family: 'Arial';
-        }
-    </style>
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 </head>
 
 <body dir="rtl">
 
+    <div id="setup">
+        <div style="display:flex;max-width: 600px;margin:auto;justify-content: center;">
 
+            <div style="border:2px solid lightgray;padding:10px;margin:10px;text-align: center;cursor: pointer;">
+                <i class="fas fa-trophy" style="font-size:40px;color:goldenrod;"></i>
+                <br>
+    לידרבורד
+            </div>
+            <div style="border:2px solid lightgray;padding:10px;margin:10px;text-align: center;cursor: pointer;">
+                <i class='fas fa-gamepad' style="font-size:40px;color:purple;cursor: pointer;"></i>
+                <br>
+    המשך תרגול
+            </div>
+    
+        </div>
 
-    <form>
-        שם משתמש: <input type="text" id="name">
-        <button id="login" style="cursor:pointer;">התחברות</button>
-        <button id="logout" style="cursor:pointer;display:none">התנתקות</button>
+        <p class="user">
+            מַרְחַבַּא
+            <span class="username"></span>!
+        </p>
 
-    </form>
+        <div class="lessons">
+            <div class="lesson" data-lesson="1">
+                <div>
+                    שיעור 1
+                </div>
+            </div>
+            <div class="lesson" data-lesson="2">
+                <div>
+                    שיעור 2
+                </div>
+            </div>
+            <div class="lesson" data-lesson="3">
+                <div>
+                    שיעור 3
+                </div>
+            </div>
+            <div class="lesson" data-lesson="4">
+                <div>
+                    שיעור 4
+                </div>
+            </div>
+            <div class="lesson" data-lesson="5">
+                <div>
+                    שיעור 5
+                </div>
+            </div>
+            <div class="lesson" data-lesson="6">
+                <div>
+                    שיעור 6
+                </div>
+            </div>
+            <div class="lesson" data-lesson="7">
+                <div>
+                    שיעור 7
+                </div>
+            </div>
+            <div class="lesson" data-lesson="8">
+                <div>
+                    שיעור 8
+                </div>
+            </div>
 
+        </div>
 
-    <iframe id="flashcards" src="https://madrasa-flashcards.onrender.com/" width="100%" height="800px"
-        frameBorder="0"></iframe>
-    <script>
+    </div>
 
-        //In open edx
+    <div id="board">
+        <i style="float:left;font-size:30px;cursor: pointer;" class="close fa-solid fa-xmark"></i>
+        <div class="lesson-title">
+            שיעור
+            <span class="lesson-number"></span>
+            - תרגול אוצר מילים
+        </div>
+        <div class="header">
+            <div class="question-number">
+                שאלה
+                <span>1</span>
+                מתוך
+                10
+            </div>
+        </div>
+        <div class="question"> 
+            <i id="audio-icon" class="fas fa-play-circle"></i>
+            <audio id="audio-file" src="" type="audio/mpeg"></audio>
+            <span class="question-text">שאלה</span>
+             
+        </div>
+        <div class="answers">
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="answer">
+                <span class="answer-text"></span>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+        </div>
+        <div class="buttons">
 
-        // $.ajax({
-        //     async: false,
-        //     url: 'https://courses.madrasafree.com/api/user/v1/me',
-        //     success: function (result) {
-        //         data = result;
-        //     }
-        // });
-        let username;
-
-        if (localStorage.getItem("username")) {
-            $("#login").hide();
-            $("#logout").show();
-            $("form input").val(localStorage.getItem("username"));
-            $("form input").prop("disabled", true);
-            document.querySelector("#flashcards").addEventListener("load", function () {
-                document.querySelector("#flashcards").contentWindow.postMessage({ 'username': localStorage.getItem("username") }, '*');
-            });
-
-
-        }
-        else {
-
-        }
-
-        document.querySelector("form").addEventListener("submit", function (e) {
-
-            e.preventDefault();
-
-            if (localStorage.getItem("username")) {
-                localStorage.removeItem("username");
-            } else {
-                username = document.querySelector("#name").value;
-                localStorage.setItem("username", username);
-            }
-
-            location.reload();
-
-
-        });
-
-
-
-
-
-    </script>
+            <button id="check" disabled>בדיקה</button>
+            <button id="next">המשך</button>
+        </div>
+    </div>
+    <div id="finish" style="display:none">
+        <div class="buttons">
+            <div>
+                <p>
+                    כֻּלّ אִלְאִחְתִרַאם! כל הכבוד!
+                </p>
+                <div class="grade">
+                    ציון: <span></span>
+                </div>
+            </div>
+            <button onclick="location.reload();">חזרה</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

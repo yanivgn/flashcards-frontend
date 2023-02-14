@@ -1,46 +1,13 @@
-let username = "anonymous";
-let level;
-let data;
-let i = 0;
-let score = 100;
-let correctAnswer;
-let input;
-let selected;
-let correct;
-
+let username = "anonymous", level, data, i = 0, score = 100, correctAnswer, input, selected, correct, wordId, audio;
 
 window.addEventListener("message", (e) => {
-    console.log(e.data);
     if (e.data.username) {
+        username = e.data.username;
         $(".username").html(e.data.username);
     }
 });
 
-
 $(".username").html(username);
-
-// $("form").submit(function (e) {
-//     e.preventDefault();
-//     username = $("#name").val();
-//     level = $("#level").val();
-//     if (username == "" || level == null || level == "") {
-//         alert("נא הזינו שם משתמש ומספר שיעור");
-//         return false;
-//     }
-//     $("#setup").hide();
-//     $("#board").show();
-//     let url = `https://flashcards-5g44.onrender.com/username/${username}/level/${level}`;
-
-//     $.ajax({
-//         async: false,
-//         url: url,
-//         success: function (result) {
-//             data = result;
-//         }
-//     });
-//     nextQuestion();
-// });
-
 
 $(".lesson").click(function () {
     level = $(this).data("lesson");
@@ -62,10 +29,14 @@ $(".lesson").click(function () {
 });
 
 $("#next").click(function () {
+    if (i == 10) {
+        $("#board").hide();
+        $("#finish").show();
+        $(".grade span").html(score);
+    }
     nextQuestion();
     $("#check").show();
     $("#next").hide();
-
 });
 
 
@@ -78,6 +49,7 @@ $("#check").click(function () {
     if (input == correctAnswer) {
         selected.find(".fa-circle-check").show();
         selected.css("background-color", "lightgreen");
+        updateAnswer(username, wordId, true)
     } else {
         score -= 10;
         selected.find(".fa-circle-xmark").show();
@@ -87,9 +59,8 @@ $("#check").click(function () {
     }
 });
 
-// $(".answer").on("click", selectAnswer);
-
 function nextQuestion() {
+
     $(".question-number span").html(i + 1);
     $(".answer").on("click", selectAnswer);
 
@@ -100,9 +71,12 @@ function nextQuestion() {
     $("#check").css("background-color", "lightblue");
     $("#check").css("cursor", "initial");
 
-
-    $(".question").html(data[i]["arabic"]);
+    
+    $(".question-text").html(data[i]["arabic"]);
+    audio = new Audio((data[i]["audio"]));
     correctAnswer = data[i]["hebrew"];
+    wordId = data[i]["id"];
+    console.log(wordId);
     let answers = [];
     answers.push(correctAnswer);
     data[i]["wrong answers"].forEach(el => {
@@ -122,7 +96,6 @@ function nextQuestion() {
     i++;
 }
 
-
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
@@ -134,15 +107,13 @@ function shuffle(array) {
     return array;
 }
 
-
 function updateAnswer(username, wordId, result) {
     $.ajax({
-        url: `https://madrasa-flashcards.onrender.com/username/yanivg/${username}/${wordId}/result/${result}`,
+        url: `https://flashcards-5g44.onrender.com/username/${username}/wordId/${wordId}/result/${result}`,
         type: 'PUT',
         success: function (response) { }
     });
 }
-
 
 function selectAnswer() {
     if ($("#check").prop("disabled", true)) {
@@ -158,4 +129,8 @@ function selectAnswer() {
 
 $(".close").click(function () {
     location.reload();
+});
+
+$("#audio-icon").click(function(){
+    audio.play();
 });

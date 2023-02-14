@@ -3,49 +3,50 @@
     src: url('font/Abraham-Regular.ttf');
 }
 
-body{
+body {
     font-family: 'Abraham';
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 
-h1{
+h1 {
     text-align: center;
 }
 
-#setup{
-    max-width:600px;
-    margin:40px auto;
-    padding:30px;
-}
-#board{
-    max-width:600px;
-    margin:10px auto;
-    border:1px solid gray;
-    padding:20px 40px;
-    display: none;
-    padding-bottom:80px;
+#setup {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
-.question{
-    margin:20px 0;
-    font-size:24px;
+#board {
+    max-width: 600px;
+    margin: 10px auto;
+    border: 1px solid gray;
+    padding: 20px 40px;
+    display: none;
+    padding-bottom: 80px;
+}
+
+.question {
+    margin: 20px 0;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
 
-.answer{
-    font-size:20px;
-    padding:4px;
-    margin:6px 0;
-    border:1px solid #007BFF;
+.answer {
+    font-size: 20px;
+    padding: 4px;
+    margin: 6px 0;
+    border: 1px solid #007BFF;
     cursor: pointer;
     background-color: #F0F8FF;
 }
 
-.answer.correct{
-    border:1px solid green;
+.answer.correct {
+    border: 1px solid green;
     background-color: #0080004f;
 }
 
@@ -54,47 +55,40 @@ h1{
     background-color: #0080004f;
 } */
 
-.answer.wrong{
-    border:1px solid red;
+.answer.wrong {
+    border: 1px solid red;
     background-color: #ff00003b;
 }
 
-/* .answer.wrong:hover{
-    border:1px solid red;
-    background-color: #ff00003b;
-} */
-/* .answer:hover{
-    background-color: rgb(193, 220, 236);
-} */
-
-
-.answer i{
-    float:left;
+.answer i {
+    float: left;
     display: none;
-    position:relative;
-    top:3px;
+    position: relative;
+    top: 3px;
 }
 
-.fa-circle-xmark{
-    color:red;
+.fa-circle-xmark {
+    color: red;
 }
 
-.fa-circle-check{
-    color:green;
+.fa-circle-check {
+    color: green;
 }
 
-#next{
+#next {
     display: none;
     cursor: pointer;
     background-color: darkslategray;
 
 }
-#check{
+
+#check {
     background-color: lightblue;
 
 }
 
-#next, #check{
+#next,
+#check {
     color: white;
     border: 0;
     font-size: 22px;
@@ -103,28 +97,29 @@ h1{
     margin: 10px 0;
 }
 
-.progress{
-  
-    width:60%;
-}
-.question-number{
-    text-align: center;
-    font-size:16px;
-    position:relative;
-    top:-3px;
-    right:10px;
+.progress {
+
+    width: 60%;
 }
 
-.lesson-title{
-    font-size:24px;
+.question-number {
     text-align: center;
+    font-size: 16px;
+    position: relative;
+    top: -3px;
+    right: 10px;
 }
 
-.buttons{
+.lesson-title {
+    font-size: 24px;
     text-align: center;
 }
 
-.header{
+.buttons {
+    text-align: center;
+}
+
+.header {
     display: flex;
     margin: auto;
     width: 80%;
@@ -134,20 +129,21 @@ h1{
     justify-content: center;
 }
 
-.grade span{
-    font-size:40px;
+.grade span {
+    font-size: 40px;
 }
 
-.lessons{
-    display:flex;
-    flex-wrap:wrap;
+.lessons {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 
 }
-.lesson{
-    width:40%;
-    margin:10px;
-    height:60px;
+
+.lesson {
+    width: 40%;
+    margin: 10px;
+    height: 60px;
     border-radius: 10px;
     box-shadow: 1px 2px 1px darkgray;
     display: flex;
@@ -155,16 +151,23 @@ h1{
     align-items: center;
     justify-content: center;
     background-color: lightblue;
-    font-size:26px;
+    font-size: 26px;
     cursor: pointer;
 }
-.user{
-    font-size:28px;
+
+.user {
+    font-size: 28px;
     text-align: center;
-    margin-top:20px;
 }
 
-.menu{
-    display: flex;
-    margin: auto;
+#finish {
+    max-width: 600px;
+    margin: 10px auto;
+    border: 1px solid gray;
+    padding: 20px 40px;
+    padding-bottom: 80px;
+}
+
+.grade {
+    font-size: 32px;
 }
