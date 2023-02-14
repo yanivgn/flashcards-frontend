@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body *{
+        body * {
             font-family: 'Arial';
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 </head>
 
 <body dir="rtl">
@@ -19,11 +21,14 @@
 
     <form>
         שם משתמש: <input type="text" id="name">
-        <button style="cursor:pointer;">שלח</button>
+        <button id="login" style="cursor:pointer;">התחברות</button>
+        <button id="logout" style="cursor:pointer;display:none">התנתקות</button>
+
     </form>
 
 
-    <iframe id="flashcards" src="https://madrasa-flashcards.onrender.com/" width="100%" height="800px" frameBorder="0"></iframe>
+    <iframe id="flashcards" src="https://madrasa-flashcards.onrender.com/" width="100%" height="800px"
+        frameBorder="0"></iframe>
     <script>
 
         //In open edx
@@ -35,11 +40,36 @@
         //         data = result;
         //     }
         // });
+        let username;
 
-        document.querySelector("form").addEventListener("submit",function (e) {
+        if (localStorage.getItem("username")) {
+            $("#login").hide();
+            $("#logout").show();
+            $("form input").val(localStorage.getItem("username"));
+            $("form input").prop("disabled", true);
+            document.querySelector("#flashcards").addEventListener("load", function () {
+                document.querySelector("#flashcards").contentWindow.postMessage({ 'username': localStorage.getItem("username") }, '*');
+            });
+
+
+        }
+        else {
+
+        }
+
+        document.querySelector("form").addEventListener("submit", function (e) {
+
             e.preventDefault();
-            let username =  document.querySelector("#name").value;
-            document.querySelector("#flashcards").contentWindow.postMessage({'username': username}, '*');
+
+            if (localStorage.getItem("username")) {
+                localStorage.removeItem("username");
+            } else {
+                username = document.querySelector("#name").value;
+                localStorage.setItem("username", username);
+            }
+
+            location.reload();
+
 
         });
 
