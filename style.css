@@ -5,6 +5,8 @@
 
 body{
     font-family: 'Abraham';
+    margin:0;
+    padding:0;
 }
 
 
@@ -14,28 +16,29 @@ h1{
 
 #setup{
     max-width:600px;
-    border:1px solid gray;
     margin:40px auto;
     padding:30px;
 }
 #board{
     max-width:600px;
-    margin:40px auto;
+    margin:10px auto;
     border:1px solid gray;
-    padding:10px;
+    padding:20px 40px;
     display: none;
+    padding-bottom:80px;
 }
 
 .question{
     margin:20px 0;
-    font-size:25px;
+    font-size:24px;
     font-weight: bold;
+    text-align: center;
 }
 
 .answer{
-    font-size:24px;
-    padding:8px;
-    margin:8px 0;
+    font-size:20px;
+    padding:4px;
+    margin:6px 0;
     border:1px solid #007BFF;
     cursor: pointer;
     background-color: #F0F8FF;
@@ -82,16 +85,86 @@ h1{
 
 #next{
     display: none;
+    cursor: pointer;
+    background-color: darkslategray;
+
+}
+#check{
+    background-color: lightblue;
+
 }
 
 #next, #check{
-    background-color: darkslategray;
     color: white;
     border: 0;
-    font-size: 24px;
-    padding: 6px 22px;
+    font-size: 22px;
+    padding: 2px 22px;
     border-radius: 20px;
     margin: 10px 0;
-    cursor: pointer;
+}
 
+.progress{
+  
+    width:60%;
+}
+.question-number{
+    text-align: center;
+    font-size:16px;
+    position:relative;
+    top:-3px;
+    right:10px;
+}
+
+.lesson-title{
+    font-size:24px;
+    text-align: center;
+}
+
+.buttons{
+    text-align: center;
+}
+
+.header{
+    display: flex;
+    margin: auto;
+    width: 80%;
+    padding: 8px 4px 0px 40px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.grade span{
+    font-size:40px;
+}
+
+.lessons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+
+}
+.lesson{
+    width:40%;
+    margin:10px;
+    height:60px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 1px darkgray;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    font-size:26px;
+    cursor: pointer;
+}
+.user{
+    font-size:28px;
+    text-align: center;
+    margin-top:20px;
+}
+
+.menu{
+    display: flex;
+    margin: auto;
 }

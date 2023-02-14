@@ -1,16 +1,23 @@
-let username;
+let username = "anonymous";
 let level;
 let data;
 let i = 0;
-let score = 0;
+let score = 100;
 let correctAnswer;
 let input;
 let selected;
 let correct;
 
-function setProgress(currentScreen, screens) {
-    progress.value = (currentScreen / (screens + 1)) * 100;
-}
+
+window.addEventListener("message", (e) => {
+    console.log(e.data);
+    if (e.data.username) {
+        $(".username").html(e.data.username);
+    }
+});
+
+
+$(".username").html(username);
 
 $("form").submit(function (e) {
     e.preventDefault();
@@ -34,6 +41,26 @@ $("form").submit(function (e) {
     nextQuestion();
 });
 
+
+$(".lesson").click(function () {
+    level = $(this).data("lesson");
+    $("#setup").hide();
+    $("#board").show();
+
+    let url = `https://flashcards-5g44.onrender.com/username/${username}/level/${level}`;
+
+    $.ajax({
+        async: false,
+        url: url,
+        success: function (result) {
+            data = result;
+        }
+    });
+
+    $(".lesson-number").html(level);
+    nextQuestion();
+});
+
 $("#next").click(function () {
     nextQuestion();
     $("#check").show();
@@ -43,34 +70,35 @@ $("#next").click(function () {
 
 
 $("#check").click(function () {
+    $(".answer").off("click", selectAnswer);
+
     $("#check").hide();
     $("#next").show();
 
     if (input == correctAnswer) {
-        score++;
         selected.find(".fa-circle-check").show();
-        selected.css("background-color","lightgreen");
-        console.log("correct! score: " + score);
+        selected.css("background-color", "lightgreen");
     } else {
+        score -= 10;
         selected.find(".fa-circle-xmark").show();
-        selected.css("background-color","#ff000042");
-        correct.css("background-color","lightgreen");
+        selected.css("background-color", "#ff000042");
+        correct.css("background-color", "lightgreen");
         correct.find(".fa-circle-check").show();
-        console.log("wrong! score: " + score);
     }
 });
 
-$(".answer").on("click", function () {
-    $(".answer").css("background-color","#F0F8FF");
-    $(this).css("background-color", "#007bff66");   
-    input = $(this).find(".answer-text").html();
-    selected =  $(this);
-});
+// $(".answer").on("click", selectAnswer);
 
 function nextQuestion() {
+    $(".question-number span").html(i + 1);
+    $(".answer").on("click", selectAnswer);
 
     $(".answer").css("background-color", "#F0F8FF");
-    $(".fa-regular").hide();
+    $(".answer .fa-regular").hide();
+
+    $("#check").prop("disabled", true);
+    $("#check").css("background-color", "lightblue");
+    $("#check").css("cursor", "initial");
 
 
     $(".question").html(data[i]["arabic"]);
@@ -85,10 +113,10 @@ function nextQuestion() {
 
     $(".answer").each(function (j, el) {
         $(el).find(".answer-text").html(answers[j]);
-        if(answers[j] == correctAnswer){
+        if (answers[j] == correctAnswer) {
             correct = $(el);
         }
-        
+
     });
 
     i++;
@@ -114,3 +142,20 @@ function updateAnswer(username, wordId, result) {
         success: function (response) { }
     });
 }
+
+
+function selectAnswer() {
+    if ($("#check").prop("disabled", true)) {
+        $("#check").prop("disabled", false);
+        $("#check").css("background-color", "darkslategray");
+        $("#check").css("cursor", "pointer");
+    }
+    $(".answer").css("background-color", "#F0F8FF");
+    $(this).css("background-color", "#007bff66");
+    input = $(this).find(".answer-text").html();
+    selected = $(this);
+}
+
+$(".close").click(function () {
+    location.reload();
+});
