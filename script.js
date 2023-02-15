@@ -1,4 +1,4 @@
-let username = "anonymous", level, data, i = 0, score = 100, correctAnswer, input, selected, correct, wordId, audio;
+let username = "anonymous", level, data, i = 0, score = 100, correctAnswer, input, selected, correct, wordId, audio, LeitnersHitRate;
 
 window.addEventListener("message", (e) => {
     if (e.data.username) {
@@ -29,6 +29,7 @@ $(".lesson").click(function () {
 });
 
 $("#next").click(function () {
+    $('.leitners').hide();
     if (i == 10) {
         $("#board").hide();
         $("#finish").show();
@@ -58,6 +59,9 @@ $("#check").click(function () {
         selected.css("background-color", "#ff000042");
         correct.css("background-color", "lightgreen");
         correct.find(".fa-circle-check").show();
+        if (username != "anonymous") {
+            updateAnswer(username, wordId, false);
+        }
     }
 });
 
@@ -78,7 +82,6 @@ function nextQuestion() {
     audio = new Audio((data[i]["audio"]));
     correctAnswer = data[i]["hebrew"];
     wordId = data[i]["id"];
-    console.log(wordId);
     let answers = [];
     answers.push(correctAnswer);
     data[i]["wrong answers"].forEach(el => {
@@ -113,7 +116,34 @@ function updateAnswer(username, wordId, result) {
     $.ajax({
         url: `https://flashcards-5g44.onrender.com/username/${username}/wordId/${wordId}/result/${result}`,
         type: 'PUT',
-        success: function (response) { }
+        success(response) {
+            let leitnersHitRate = response.LeitnersHitRate;
+            console.log(leitnersHitRate);
+
+            $('.leitners').show();
+
+            let progressValue;
+            let progressText;
+
+            if (leitnersHitRate >= 0.75) {
+                // progressValue = 1;
+                progressText = "שליטה גבוהה";
+            } else if (leitnersHitRate >= 0.5) {
+                // progressValue = 0.5;
+                progressText = "שליטה בינונית";
+            } else {
+                // progressValue = 0.25;
+                progressText = "שליטה נמוכה";
+            }
+            $(".leitners-text").html(progressText);
+            $('.leitners').circleProgress({
+                value: leitnersHitRate,
+                fill: "green",
+                startAngle: -Math.PI * 1.5,
+                size:30,
+                thickness:6,
+            });
+        }
     });
 }
 
