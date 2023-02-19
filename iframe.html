@@ -15,147 +15,176 @@
 </head>
 
 <body dir="rtl">
+    <div id="learning">
+        <div id="setup">
+            <div style="display:flex;max-width: 600px;margin:auto;">
 
-    <div id="setup">
-        <div style="display:flex;max-width: 600px;margin:auto;justify-content: center;">
+                <div id="leaderboard-open"
+                    style="border:2px solid lightgray;padding:10px;margin:10px;text-align: center;cursor: pointer;">
+                    <i class="fas fa-trophy" style="font-size:40px;color:goldenrod;"></i>
+                </div>
+              
 
-            <div style="border:2px solid lightgray;padding:10px;margin:10px;text-align: center;cursor: pointer;">
-                <i class="fas fa-trophy" style="font-size:40px;color:goldenrod;"></i>
-                <br>
-                לידרבורד
             </div>
-            <div style="border:2px solid lightgray;padding:10px;margin:10px;text-align: center;cursor: pointer;">
-                <i class='fas fa-gamepad' style="font-size:40px;color:purple;cursor: pointer;"></i>
-                <br>
-                המשך תרגול
+
+            <p class="user">
+                מַרְחַבַּא
+                <span class="username"></span>!
+            </p>
+
+            <div class="lessons">
+                <div class="lesson" data-lesson="1">
+                    <div>
+                        שיעור 1
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="2">
+                    <div>
+                        שיעור 2
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="3">
+                    <div>
+                        שיעור 3
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="4">
+                    <div>
+                        שיעור 4
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="5">
+                    <div>
+                        שיעור 5
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="6">
+                    <div>
+                        שיעור 6
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="7">
+                    <div>
+                        שיעור 7
+                    </div>
+                </div>
+                <div class="lesson" data-lesson="8">
+                    <div>
+                        שיעור 8
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-        <p class="user">
-            מַרְחַבַּא
-            <span class="username"></span>!
-        </p>
+        <div id="board">
+            <i style="float:left;font-size:30px;cursor: pointer;" class="close fa-solid fa-xmark"></i>
 
-        <div class="lessons">
-            <div class="lesson" data-lesson="1">
-                <div>
-                    שיעור 1
+            <div class="lesson-title">
+                שיעור
+                <span class="lesson-number"></span>
+                - תרגול אוצר מילים
+            </div>
+            <div class="header">
+                <div class="question-number">
+                    שאלה
+                    <span>1</span>
+                    מתוך
+                    10
                 </div>
             </div>
-            <div class="lesson" data-lesson="2">
-                <div>
-                    שיעור 2
+            <div class="question">
+                <i id="audio-icon" class="fas fa-play-circle"></i>
+                <audio id="audio-file" src="" type="audio/mpeg"></audio>
+                <span class="question-text">שאלה</span>
+            </div>
+            <div class="answers">
+                <div class="answer">
+                    <span class="answer-text"></span>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <div class="answer">
+                    <span class="answer-text"></span>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <div class="answer">
+                    <span class="answer-text"></span>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <div class="answer">
+                    <span class="answer-text"></span>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <div class="answer">
+                    <span class="answer-text"></span>
+                    <i class="fa-regular fa-circle-check"></i>
+                    <i class="fa-regular fa-circle-xmark"></i>
                 </div>
             </div>
-            <div class="lesson" data-lesson="3">
-                <div>
-                    שיעור 3
-                </div>
-            </div>
-            <div class="lesson" data-lesson="4">
-                <div>
-                    שיעור 4
-                </div>
-            </div>
-            <div class="lesson" data-lesson="5">
-                <div>
-                    שיעור 5
-                </div>
-            </div>
-            <div class="lesson" data-lesson="6">
-                <div>
-                    שיעור 6
-                </div>
-            </div>
-            <div class="lesson" data-lesson="7">
-                <div>
-                    שיעור 7
-                </div>
-            </div>
-            <div class="lesson" data-lesson="8">
-                <div>
-                    שיעור 8
-                </div>
-            </div>
+            <div class="buttons">
 
+                <button id="check" disabled>בדיקה</button>
+                <button id="next">המשך</button>
+                <div class="leitners" style="text-align: center;">
+                    <div class="leitners-value"></div>
+                    <span class="leitners-text" style="font-size:16px;"></span>
+
+                </div>
+
+            </div>
+        </div>
+        <div id="finish" style="display:none">
+            <div class="buttons">
+                <div>
+                    <p>
+                        כֻּלّ אִלְאִחְתִרַאם! כל הכבוד!
+                    </p>
+                    <div class="grade">
+                        ציון: <span></span>
+                    </div>
+                </div>
+                <button onclick="location.reload();">חזרה</button>
+            </div>
         </div>
 
     </div>
 
-    <div id="board">
-        <i style="float:left;font-size:30px;cursor: pointer;" class="close fa-solid fa-xmark"></i>
+    <div id="leaderboard" style="display:none;max-width: 600px;margin:auto;margin-top:20px;">
+
+        <div id="leaderboard-close" style="cursor: pointer;display: none;float:left">
+            <i class='fas fa-xmark' style="font-size:30px;"></i>
+
+        </div>
        
-        <div class="lesson-title">
-            שיעור
-            <span class="lesson-number"></span>
-            - תרגול אוצר מילים
-        </div>
-        <div class="header">
-            <div class="question-number">
-                שאלה
-                <span>1</span>
-                מתוך
-                10
-            </div>
-        </div>
-        <div class="question">
-            <i id="audio-icon" class="fas fa-play-circle"></i>
-            <audio id="audio-file" src="" type="audio/mpeg"></audio>
-            <span class="question-text">שאלה</span>
-        </div>
-        <div class="answers">
-            <div class="answer">
-                <span class="answer-text"></span>
-                <i class="fa-regular fa-circle-check"></i>
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="answer">
-                <span class="answer-text"></span>
-                <i class="fa-regular fa-circle-check"></i>
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="answer">
-                <span class="answer-text"></span>
-                <i class="fa-regular fa-circle-check"></i>
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="answer">
-                <span class="answer-text"></span>
-                <i class="fa-regular fa-circle-check"></i>
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="answer">
-                <span class="answer-text"></span>
-                <i class="fa-regular fa-circle-check"></i>
-                <i class="fa-regular fa-circle-xmark"></i>
-            </div>
-        </div>
-        <div class="buttons">
-
-            <button id="check" disabled>בדיקה</button>
-            <button id="next">המשך</button>
-            <div class="leitners" style="text-align: center;">
-                <div class="leitners-value"></div>
-                <span class="leitners-text" style="font-size:16px;"></span>
-
-            </div>
-
-        </div>
-    </div>
-    <div id="finish" style="display:none">
-        <div class="buttons">
-            <div>
-                <p>
-                    כֻּלّ אִלְאִחְתִרַאם! כל הכבוד!
-                </p>
-                <div class="grade">
-                    ציון: <span></span>
+        <p class="user">טבלת המובילים</p>
+        <div class="container">
+            
+            <div class="leaderboard">
+                <div class="leaderboard-header">
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-item-cell leaderboard-item-cell-rank">
+                            <span></span>
+                        </div>
+                        <div class="leaderboard-item-cell leaderboard-item-cell-user">
+                            <span>שם משתמש</span>
+                        </div>
+                        <div class="leaderboard-item-cell leaderboard-item-cell-score">
+                            <span>ניקוד</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="leaderboard-list">
                 </div>
             </div>
-            <button onclick="location.reload();">חזרה</button>
         </div>
-    </div>
+
+
+
 
     <script src="script.js"></script>
 </body>

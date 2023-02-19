@@ -140,8 +140,8 @@ function updateAnswer(username, wordId, result) {
                 value: leitnersHitRate,
                 fill: "green",
                 startAngle: -Math.PI * 1.5,
-                size:30,
-                thickness:6,
+                size: 30,
+                thickness: 6,
             });
         }
     });
@@ -166,3 +166,68 @@ $(".close").click(function () {
 $("#audio-icon").click(function () {
     audio.play();
 });
+
+$("#leaderboard-open").click(function () {
+    $("#leaderboard").show();
+    $("#learning").hide();
+    $("#leaderboard-open").hide();
+    $("#leaderboard-close").show();
+    getLeaderboard();
+});
+
+$("#leaderboard-close").click(function () {
+    $("#leaderboard").hide();
+    $("#learning").show();
+    $("#leaderboard-open").show();
+    $("#leaderboard-close").hide();
+});
+
+function getLeaderboard() {
+
+    $(".leaderboard-list").empty();
+
+    let url = `https://flashcards-5g44.onrender.com/leaderboard`;
+
+    $.ajax({
+        async: false,
+        url: url,
+        success: function (result) {
+            $(result).each(function (index, dataItem) {
+                let rank, name, score, item;
+
+                rank = $("<div>");
+                rank.addClass("leaderboard-item-cell").addClass("leaderboard-item-cell-rank");
+
+                if (dataItem["Rank"] == 1) {
+                    rank.html(`<img src="media/medal1.png" width="35">`);
+                } else if(dataItem["Rank"] == 2){
+                    rank.html(`<img src="media/medal2.png" width="35">`);
+                }else if(dataItem["Rank"] == 3){
+                    rank.html(`<img src="media/medal3.png" width="35">`);
+                }else{
+                    rank.html( dataItem["Rank"] + rank.html());
+
+                }
+              
+
+                name = $("<div>");
+                name.addClass("leaderboard-item-cell").addClass("leaderboard-item-cell-user");
+                name.html(dataItem["Name"]);
+
+                score = $("<div>");
+                score.addClass("leaderboard-item-cell").addClass("leaderboard-item-cell-score");
+                score.html(dataItem["score"]);
+
+                item = $("<div>");
+
+
+                item.append(rank);
+                item.append(name);
+                item.append(score);
+
+                item.addClass("leaderboard-item");
+                $(".leaderboard-list").append(item);
+            });
+        }
+    });
+}
